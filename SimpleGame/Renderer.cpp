@@ -46,20 +46,6 @@ void Renderer::CreateVertexBufferObjects()
 	glGenBuffers(1, &m_VBORect);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBORect);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(rect), rect, GL_STATIC_DRAW);
-
-	//lecture2
-	float Tri[]
-		=
-	{
-		0.f, 0.f, 0.f,
-		1.f, 0.f, 0.f,
-		1.f, 1.f, 0.f,
-	};
-
-	glGenBuffers(1, &m_VBOTest);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTest);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Tri), Tri, GL_STATIC_DRAW);
-
 }
 
 void Renderer::AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)
@@ -197,25 +183,6 @@ void Renderer::DrawSolidRect(float x, float y, float z, float size, float r, flo
 	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	glDisableVertexAttribArray(attribPosition);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-}
-
-void Renderer::DrawTest()
-{
-	//Program select
-	glUseProgram(m_SolidRectShader);
-	glUniform4f(glGetUniformLocation(m_SolidRectShader, "u_Trans"), 0, 0, 0, 1);
-	glUniform4f(glGetUniformLocation(m_SolidRectShader, "u_Color"), 1, 1, 1, 1);
-
-	int attribPosition = glGetAttribLocation(m_SolidRectShader, "a_Position");
-	glEnableVertexAttribArray(attribPosition);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTest);
-	glVertexAttribPointer(attribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-
-	glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	glDisableVertexAttribArray(attribPosition);
 
