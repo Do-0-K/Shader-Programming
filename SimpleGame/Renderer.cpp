@@ -28,19 +28,6 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 	{
 		m_Initialized = true;
 	}
-}
-
-void Renderer::TestInitialize(int windowSizeX, int windowSizeY)
-{
-	//Set window size
-	m_WindowSizeX = windowSizeX;
-	m_WindowSizeY = windowSizeY;
-
-	//Load shaders
-	m_TestShader = CompileShaders("./Shaders/Test.vs", "./Shaders/Test.fs");
-
-	//Create VBOs
-	CreateVertexBufferObjects();
 
 	if (m_TestShader > 0 && m_VBORect > 0)
 	{
@@ -67,12 +54,40 @@ void Renderer::CreateVertexBufferObjects()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(rect), rect, GL_STATIC_DRAW);
 
 	//lecture2
-	float testPos[]
+	/*float testPos[]
 		=
 	{
 		0.f, 0.f, 0.f,
 		1.f, 0.f, 0.f,
 		1.f, 1.f, 0.f
+	};
+
+	glGenBuffers(1, &m_VBOTestPos);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestPos);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(testPos), testPos, GL_STATIC_DRAW);
+
+	float testColor[]
+		=
+	{
+		1.f, 0.f, 0.f, 1.f,
+		0.f, 1.f, 0.f, 1.f,
+		0.f, 0.f, 1.f ,1.f
+	};
+
+	glGenBuffers(1, &m_VBOTestColor);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(testColor), testColor, GL_STATIC_DRAW);*/
+
+	//lecture3
+	float testPos[]
+		=
+	{
+		0.f, 0.f, 0.f,
+		1.f, 0.f, 0.f,
+		1.f, 1.f, 0.f,
+		0.f, 0.f, 0.f,
+		1.f, 1.f, 0.f,
+		0.f, 1.f, 0.f
 	};
 
 	glGenBuffers(1, &m_VBOTestPos);
@@ -248,9 +263,9 @@ void Renderer::DrawTest()
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestPos);
 	glVertexAttribPointer(aPos, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	glDisableVertexAttribArray(aPos);
+	glDisableVertexAttribArray(aPos); 
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
