@@ -1,7 +1,5 @@
 ﻿  Renderer.cpp
-C:\Users\C221-29\Documents\GitHub\Shader-Programming\SimpleGame\Renderer.cpp(256,12): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\C221-29\Documents\GitHub\Shader-Programming\SimpleGame\Renderer.cpp(259,12): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
   (소스 파일 '/Renderer.cpp'을(를) 컴파일하는 중)
   
-  SimpleGame.cpp
-  코드를 생성하고 있습니다...
   SimpleGame.vcxproj -> C:\Users\C221-29\Documents\GitHub\Shader-Programming\x64\Debug\SimpleGame.exe

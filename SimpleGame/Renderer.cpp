@@ -78,16 +78,19 @@ void Renderer::CreateVertexBufferObjects()
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(testColor), testColor, GL_STATIC_DRAW);*/
 
+	float temp = 0.5f;
+	float size = 0.2f;
+
 	//lecture3
 	float testPos[]
 		=
 	{
-		0.f, 0.f, 0.f,
-		1.f, 0.f, 0.f,
-		1.f, 1.f, 0.f,
-		0.f, 0.f, 0.f,
-		1.f, 1.f, 0.f,
-		0.f, 1.f, 0.f
+		(0.f - temp)* size, (0.f - temp)* size, 0.f,
+		(1.f - temp)* size, (0.f - temp)* size, 0.f,
+		(1.f - temp)* size, (1.f - temp)* size, 0.f,
+		(0.f - temp)* size, (0.f - temp)* size, 0.f,
+		(1.f - temp)* size, (1.f - temp)* size, 0.f,
+		(0.f - temp)* size, (1.f - temp)* size, 0.f
 	};
 
 	glGenBuffers(1, &m_VBOTestPos); 
