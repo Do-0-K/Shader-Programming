@@ -39,5 +39,6 @@ private:
 
 	//lecture3
 	GLuint m_TestShader = 0;
+	float m_time = 0;
 };
 

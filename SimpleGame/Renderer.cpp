@@ -253,8 +253,12 @@ void Renderer::DrawSolidRect(float x, float y, float z, float size, float r, flo
 
 void Renderer::DrawTest()
 {
+	m_time += 0.016;
 	//lecture2
 	glUseProgram(m_TestShader);
+
+	int aTime = glGetUniformLocation(m_TestShader, "a_Time");
+	glUniform1f(aTime, m_time);
 
 	int aPos = glGetAttribLocation(m_TestShader, "a_Position");
 	glEnableVertexAttribArray(aPos);
