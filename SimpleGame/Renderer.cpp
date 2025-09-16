@@ -90,7 +90,7 @@ void Renderer::CreateVertexBufferObjects()
 		0.f, 1.f, 0.f
 	};
 
-	glGenBuffers(1, &m_VBOTestPos);
+	glGenBuffers(1, &m_VBOTestPos); 
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestPos);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(testPos), testPos, GL_STATIC_DRAW);
 
