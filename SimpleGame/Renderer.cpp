@@ -18,12 +18,31 @@ void Renderer::Initialize(int windowSizeX, int windowSizeY)
 	m_WindowSizeY = windowSizeY;
 
 	//Load shaders
-	m_SolidRectShader = CompileShaders("./Shaders/SolidRect.vs", "./Shaders/SolidRect.fs");
-	
+	//m_SolidRectShader = CompileShaders("./Shaders/SolidRect.vs", "./Shaders/SolidRect.fs");
+	m_TestShader = CompileShaders("./Shaders/Test.vs", "./Shaders/Test.fs");
+
 	//Create VBOs
 	CreateVertexBufferObjects();
 
 	if (m_SolidRectShader > 0 && m_VBORect > 0)
+	{
+		m_Initialized = true;
+	}
+}
+
+void Renderer::TestInitialize(int windowSizeX, int windowSizeY)
+{
+	//Set window size
+	m_WindowSizeX = windowSizeX;
+	m_WindowSizeY = windowSizeY;
+
+	//Load shaders
+	m_TestShader = CompileShaders("./Shaders/Test.vs", "./Shaders/Test.fs");
+
+	//Create VBOs
+	CreateVertexBufferObjects();
+
+	if (m_TestShader > 0 && m_VBORect > 0)
 	{
 		m_Initialized = true;
 	}
@@ -217,17 +236,14 @@ void Renderer::DrawSolidRect(float x, float y, float z, float size, float r, flo
 void Renderer::DrawTest()
 {
 	//lecture2
-	glUseProgram(m_SolidRectShader);
+	glUseProgram(m_TestShader);
 
-	glUniform4f(glGetUniformLocation(m_SolidRectShader, "u_Trans"), 0, 0, 0, 1);
-	//glUniform4f(glGetUniformLocation(m_SolidRectShader, "u_Color"), 1, 1, 1, 1);
-
-	int aColor = glGetAttribLocation(m_SolidRectShader, "a_Color");
+	int aColor = glGetAttribLocation(m_TestShader, "a_Color");
 	glEnableVertexAttribArray(aColor);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
 	glVertexAttribPointer(aColor, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0);
 
-	int aPos = glGetAttribLocation(m_SolidRectShader, "a_Position");
+	int aPos = glGetAttribLocation(m_TestShader, "a_Position");
 	glEnableVertexAttribArray(aPos);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestPos);
 	glVertexAttribPointer(aPos, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);

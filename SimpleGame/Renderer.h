@@ -19,6 +19,7 @@ public:
 
 private:
 	void Initialize(int windowSizeX, int windowSizeY);
+	void TestInitialize(int windowSizeX, int windowSizeY);
 	bool ReadFile(char* filename, std::string *target);
 	void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType);
 	GLuint CompileShaders(char* filenameVS, char* filenameFS);
@@ -36,5 +37,8 @@ private:
 	//lecture2
 	GLuint m_VBOTestPos = 0;
 	GLuint m_VBOTestColor = 0;
+
+	//lecture3
+	GLuint m_TestShader = 0;
 };
 
