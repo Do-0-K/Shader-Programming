@@ -99,6 +99,9 @@ void Renderer::CreateVertexBufferObjects()
 	{
 		1.f, 0.f, 0.f, 1.f,
 		0.f, 1.f, 0.f, 1.f,
+		0.f, 0.f, 1.f ,1.f,
+		1.f, 0.f, 0.f, 1.f,
+		0.f, 1.f, 0.f, 1.f,
 		0.f, 0.f, 1.f ,1.f
 	};
 
@@ -253,19 +256,20 @@ void Renderer::DrawTest()
 	//lecture2
 	glUseProgram(m_TestShader);
 
-	int aColor = glGetAttribLocation(m_TestShader, "a_Color");
-	glEnableVertexAttribArray(aColor);
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
-	glVertexAttribPointer(aColor, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0);
-
 	int aPos = glGetAttribLocation(m_TestShader, "a_Position");
 	glEnableVertexAttribArray(aPos);
 	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestPos);
 	glVertexAttribPointer(aPos, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
 
+	int aColor = glGetAttribLocation(m_TestShader, "a_Color");
+	glEnableVertexAttribArray(aColor);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBOTestColor);
+	glVertexAttribPointer(aColor, 4, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0);
+
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	glDisableVertexAttribArray(aPos); 
+	glDisableVertexAttribArray(aColor);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
